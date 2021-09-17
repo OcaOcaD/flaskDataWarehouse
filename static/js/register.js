@@ -5,6 +5,7 @@ function validateRegistrationForm() {
 	let lastname = document.getElementById("lastname").value
 	let sex = document.getElementById("sex").value
 	let isMedic = document.getElementById("isMedic").value
+	let cedula = document.getElementById("cedula").value
 	let email = document.getElementById("email").value
 	let password = document.getElementById("password").value
 	let confirmPassword = document.getElementById("confirmPassword").value
