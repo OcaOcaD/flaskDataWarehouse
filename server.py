@@ -7,15 +7,22 @@ app = Flask(__name__)
 def index():
     return "<p>Hola mundo</p>"
 
-@app.route('/registra')
-def registra():
-    return render_template('registra.html')
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
+# Handle Form
 @app.route('/procesa', methods=['POST'])
 def procesa():
-    codigo = request.form['codigo']
-    nombre = request.form['nombre']
-    carrera = request.form['carrera']
-    return "<h1>Datos recibidos</h1>"+ "<p>" + nombre + "</p>" + "<p>" + codigo + "</p>" + "<p>" + carrera + "</p>"
+    name = request.form['name']
+    lastname = request.form['lastname']
+    sex = request.form['sex']
+    isMedic = request.form['isMedic']
+    email = request.form['email']
+    password = request.form['password']
+    confirmPassword = request.form['confirmPassword']
+    
+    return "<h1>Data received</h1>" + name
+
 if __name__ == '__main__':
     app.run()

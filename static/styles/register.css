@@ -1,0 +1,12 @@
+/*
+* {
+    font-family: "Nunito", sans-serif;
+}
+*/
+.title {
+	background-color: rgb(89, 44, 131);
+	color: gold;
+}
+.form-group {
+	margin-top: 10px;
+}
