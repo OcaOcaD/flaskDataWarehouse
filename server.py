@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask.wrappers import Request
-from db import conectar, getListadoPersonas, guardaEmpleado
+from db import conectar, getListadoPersonas, guardaEmpleado, saveEmployeeAndIsMedic,saveEmployee
 
 app = Flask(__name__)
 
@@ -19,11 +19,24 @@ def procesa():
     lastname = request.form['lastname']
     sex = request.form['sex']
     isMedic = request.form['isMedic']
+    cedula = request.form['cedula']
     email = request.form['email']
     password = request.form['password']
     confirmPassword = request.form['confirmPassword']
+    conexion = conectar()
     #insertar en base de datos
-    return "<h1>Data received</h1>" + name 
+    if isMedic == 'Si':
+        if saveEmployeeAndIsMedic(conexion,name,lastname,sex,isMedic,cedula,email,password,confirmPassword):
+            return "<h1>Data received</h1>" + name
+        else:
+            return "<p>Error al guardar la informacion</p>"
+    else:
+        if saveEmployee(conexion,name,lastname,sex,isMedic,email,password,confirmPassword):
+            return "<h1>Data received</h1>" + name
+        else:
+            return "<p>Error al guardar la informacion</p>"
+    
+    
 
 
 @app.route('/listado')

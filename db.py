@@ -22,6 +22,34 @@ def getListadoPersonas(conexion):
     conexion.close()
     return filas
 
+def saveEmployeeAndIsMedic(conexion,name,lastname,sex,isMedic,cedula,email,password,confirmPassword):
+    exito = False
+    cursor = conexion.cursor()
+    sql = "INSERT INTO empleados VALUES (null, %s,%s,%s,%s,%s,%s,%s,%s)"
+    listado = (name, lastname, sex, isMedic,cedula,email,password,confirmPassword)
+    cursor.execute(sql, listado)
+    num_empleado = cursor.lastrowid
+    if num_empleado >0:
+        exito = True
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+    return exito
+
+def saveEmployee(conexion,name,lastname,sex,isMedic,email,password,confirmPassword):
+    exito = False
+    cursor = conexion.cursor()
+    sql = "INSERT INTO empleados VALUES (null, %s,%s,%s,%s,%s,%s,%s)"
+    listado = (name, lastname, sex, isMedic,email,password,confirmPassword)
+    cursor.execute(sql, listado)
+    num_empleado = cursor.lastrowid
+    if num_empleado >0:
+        exito = True
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+    return exito
+
 def guardaEmpleado(conexion, nombre, apellidos, anio, genero):
     exito = False
     cursor = conexion.cursor()

@@ -12,27 +12,31 @@ function validateRegistrationForm() {
 
 	if (name == "") {
 		alert("Por favor coloca un nombre...")
-		document.getElementById("nombre").focus()
+		document.getElementById("name").focus()
 		return false
 	} else if (lastname == "") {
 		alert("Por favor coloca el o los apellidos...")
-		document.getElementById("apellidos").focus()
+		document.getElementById("lastname").focus()
 		return false
 	} else if (genero == "") {
 		alert("No haz seleccionado el genero...")
-		document.getElementById("genero").focus()
+		document.getElementById("sex").focus()
 		return false
 	} else if (esMedico == "") {
 		alert("¿Eres medico?")
-		document.getElementById("esMedico").focus()
+		document.getElementById("isMedic").focus()
 		return false
-	} else if (email == "") {
+	} else if (cedula == "") {
+		alert("Su ceduala...")
+		document.getElementById("cedula").focus()
+		return false
+	}else if (email == "") {
 		alert("El email no es correcto o no se ha colocado.")
 		document.getElementById("email").focus()
 		return false
 	} else if (contrasenia == "") {
 		alert("Coloca una contraseña...")
-		document.getElementById("contrasenia").focus()
+		document.getElementById("password").focus()
 		return false
 	} else if (confirmContrasenia == "") {
 		{
@@ -55,8 +59,8 @@ function validarEmail() {
 }
 
 function matchContrasenia() {
-	let contrasenia = document.getElementById("contrasenia").value
-	let confirmContrasenia = document.getElementById("confirm_password").value
+	let contrasenia = document.getElementById("password").value
+	let confirmContrasenia = document.getElementById("confirmPassword").value
 	if (contrasenia != confirmContrasenia) {
 		alert("Las contraseñas no coinciden")
 	} else return true
