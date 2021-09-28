@@ -59,7 +59,7 @@ def enfermedades():
     else:
         enfermedades = getListadoPersonas(conexion)
         print("enfermedades", enfermedades)
-        return "<h2>Listo</h2>"
+        return render_template("enfermedades.html", enfermedades=enfermedades)
 
 
 if __name__ == '__main__':
