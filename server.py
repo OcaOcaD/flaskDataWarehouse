@@ -57,7 +57,7 @@ def enfermedades():
     if conexion == None:
         return '<p> Error de conexion...</p>'
     else:
-        enfermedades = getListadoPersonas(conexion)
+        enfermedades = getEnfermedades(conexion)
         print("enfermedades", enfermedades)
         return render_template("enfermedades.html", enfermedades=enfermedades)
 
