@@ -5,7 +5,7 @@ from mysql.connector import cursor
 def conectar():
     conexion = None
     try:
-        conexion = mysql.connector.connect(host="localhost",user="root",password="1234", database= "medicos")
+        conexion = mysql.connector.connect(host="localhost",user="root", password="1234", database= "medicos")
         if conexion.is_connected():
             print('Connected')
             return conexion
@@ -63,3 +63,11 @@ def guardaEmpleado(conexion, nombre, apellidos, anio, genero):
     cursor.close()
     conexion.close()
     return exito
+
+def getEnfermedades(conexion):
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM enfermedades")
+    filas = cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return filas

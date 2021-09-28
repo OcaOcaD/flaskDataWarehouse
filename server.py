@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask.wrappers import Request
-from db import conectar, getListadoPersonas, guardaEmpleado, saveEmployeeAndIsMedic,saveEmployee
+from db import conectar, getListadoPersonas, guardaEmpleado, saveEmployeeAndIsMedic,saveEmployee, getEnfermedades
 
 app = Flask(__name__)
 
@@ -36,8 +36,6 @@ def procesa():
         else:
             return "<p>Error al guardar la informacion</p>"
     
-    
-
 
 @app.route('/listado')
 def listado():
@@ -52,17 +50,17 @@ def listado():
 def nuevo():
     return render_template("nuevo.html")
 
-@app.route('/guardaEmpleado', methods=['POST'])
-def guardaEmpleado():
-    nombre = request.form['nombre']
-    apellidos = request.form['apellidos']
-    anio = request.form['anio']
-    genero = request.form['genero']
+# Añadiendo proyecto 3
+@app.route('/enfermedades')
+def enfermedades():
     conexion = conectar()
-    if guardaEmpleado(conexion,nombre,apellidos,anio,genero):
-        return render_template('aviso.html')
+    if conexion == None:
+        return '<p> Error de conexion...</p>'
     else:
-        return "<p>Error al guardar la informacion</p>"
+        enfermedades = getListadoPersonas(conexion)
+        print("enfermedades", enfermedades)
+        return "<h2>Listo</h2>"
+
 
 if __name__ == '__main__':
     app.run()
