@@ -29,12 +29,12 @@
 				<h2>Registra un médico</h2>
 				<form
 					id="registrationForm"
-					action="/processRegistrationForm"
+					action="/procesa"
 					method="POST"
 					onsubmit="return validateRegistrationForm()"
 				>
 					<div class="form-group">
-						<label for="name"> LABELTEXT-name </label>
+						<label for="name"> Nombre </label>
 						<input
 							type=""
 							name="name-input"
@@ -43,7 +43,7 @@
 						/>
 					</div>
 					<div class="form-group">
-						<label for="lastname"> LABELTEXT-lastname </label>
+						<label for="lastname"> Apellido </label>
 						<input
 							type=""
 							name="lastname-input"
@@ -51,8 +51,17 @@
 							class="form-control"
 						/>
 					</div>
+					<div class="form-group">
+						<label for="birthdate"> Fecha nacimiento </label>
+						<input
+							type="date"
+							name="birthdate-input"
+							id="birthdate"
+							class="form-control"
+						/>
+					</div>
 					<div class="input-group mb-3">
-						<select class="custom-select" id="sex">
+						<select class="custom-select" id="sex" name="sex-input">
 							<option selected>Elige...</option>
 							<option value="1">Hombre</option>
 							<option value="2">Mujer</option>
@@ -64,17 +73,10 @@
 							>
 						</div>
 					</div>
+
+					
 					<div class="form-group">
-						<label for="isMedic"> LABELTEXT-isMedic </label>
-						<input
-							type=""
-							name="isMedic-input"
-							id="isMedic"
-							class="form-control"
-						/>
-					</div>
-					<div class="form-group">
-						<label for="email"> LABELTEXT-email </label>
+						<label for="email"> Email </label>
 						<input
 							type=""
 							name="email-input"
@@ -83,7 +85,7 @@
 						/>
 					</div>
 					<div class="form-group">
-						<label for="password"> LABELTEXT-password </label>
+						<label for="password"> Contraseña </label>
 						<input
 							type="password"
 							name="password-input"
@@ -93,7 +95,7 @@
 					</div>
 					<div class="form-group">
 						<label for="confirmPassword">
-							LABELTEXT-confirmPassword
+							Confirma contraseña
 						</label>
 						<input
 							type="password"
@@ -102,6 +104,24 @@
 							class="form-control"
 						/>
 					</div>
+					
+
+					<div class="form-check form-switch">
+						<input name="isMedicField" class="form-check-input" type="checkbox" id="isMedic" onchange="handleIdCardField(this)">
+						<label class="form-check-label" for="isMedic">Es médico</label>
+
+					  </div> 
+
+					<div id="medicIdCard-wrapper" class="form-group" style="display: none;">
+						<label for="medicIdCard"> Cédula </label>
+						<input
+							type="text"
+							name="medicIdCard-input"
+							id="medicIdCard"
+							class="form-control"
+						/>
+					</div>
+					
 
 					<button type="submit" class="btn btn-primary">
 						Registrar
@@ -109,6 +129,21 @@
 				</form>
 			</div>
 		</div>
+		<script>
+			const handleIdCardField = ( el ) => {
+				console.log("el:",el)
+				console.log( el.checked)
+				let isMedic = el.checked
+				let idCard = document.getElementById("medicIdCard-wrapper")
+				if(isMedic){
+					idCard.style.display = "block"
+				}else{
+					idCard.style.display = "none"
+				}
+			}
+			
+			
+		</script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
 			integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"

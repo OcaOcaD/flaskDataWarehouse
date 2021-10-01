@@ -22,7 +22,7 @@ def getListadoPersonas(conexion):
     conexion.close()
     return filas
 
-def saveEmployeeAndIsMedic(conexion,name,lastname,sex,isMedic,cedula,email,password,confirmPassword):
+def saveEmployeeAndIsMedic(conexion,name,lastname,birthdate, sex,isMedic,cedula,email,password,confirmPassword):
     exito = False
     cursor = conexion.cursor()
     sql = "INSERT INTO empleados VALUES (null, %s,%s,%s,%s,%s,%s,%s,%s)"

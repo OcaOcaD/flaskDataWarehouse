@@ -15,26 +15,31 @@ def register():
 # Handle Form
 @app.route('/procesa', methods=['POST'])
 def procesa():
-    name = request.form['name']
-    lastname = request.form['lastname']
-    sex = request.form['sex']
-    isMedic = request.form['isMedic']
-    cedula = request.form['cedula']
-    email = request.form['email']
-    password = request.form['password']
-    confirmPassword = request.form['confirmPassword']
-    conexion = conectar()
-    #insertar en base de datos
-    if isMedic == 'Si':
-        if saveEmployeeAndIsMedic(conexion,name,lastname,sex,isMedic,cedula,email,password,confirmPassword):
-            return "<h1>Data received</h1>" + name
-        else:
-            return "<p>Error al guardar la informacion</p>"
-    else:
-        if saveEmployee(conexion,name,lastname,sex,isMedic,email,password,confirmPassword):
-            return "<h1>Data received</h1>" + name
-        else:
-            return "<p>Error al guardar la informacion</p>"
+    name = request.form['name-input']
+    lastname = request.form['lastname-input']
+    birthdate = request.form['birthdate-input']
+    sex = request.form['sex-input']
+    email = request.form['email-input']
+    password = request.form['password-input']
+    confirmPassword = request.form['confirmPassword-input']
+    isMedic = request.form['isMedicField']
+    cedula = request.form['medicIdCard-input']
+    
+    return "<h1>Data received</h1>" + name + isMedic + birthdate
+    
+    
+    # conexion = conectar()
+    # #insertar en base de datos
+    # if isMedic == 'Si':
+    #     if saveEmployeeAndIsMedic(conexion,name,lastname,birthdate,sex,isMedic,cedula,email,password,confirmPassword):
+    #         return "<h1>Data received</h1>" + name
+    #     else:
+    #         return "<p>Error al guardar la informacion</p>"
+    # else:
+    #     if saveEmployee(conexion,name,lastname,sex,isMedic,email,password,confirmPassword):
+    #         return "<h1>Data received</h1>" + name
+    #     else:
+    #         return "<p>Error al guardar la informacion</p>"
     
 
 @app.route('/listado')
@@ -60,7 +65,6 @@ def enfermedades():
         enfermedades = getListadoPersonas(conexion)
         print("enfermedades", enfermedades)
         return render_template("enfermedades.html", enfermedades=enfermedades)
-
 
 if __name__ == '__main__':
     app.run()
