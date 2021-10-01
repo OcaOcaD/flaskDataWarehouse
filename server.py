@@ -24,8 +24,13 @@ def procesa():
     confirmPassword = request.form['confirmPassword-input']
     isMedic = request.form['isMedicField']
     cedula = request.form['medicIdCard-input']
-    
-    return "<h1>Data received</h1>" + name + isMedic + birthdate
+    if len(cedula):
+        isMedic = 1
+    else:
+        isMedic = 0
+    conexion = conectar()
+    saveEmployee(conexion,name,lastname,birthdate,sex,isMedic,email,password,confirmPassword)
+    return "<h1>Data received</h1>"
     
     
     # conexion = conectar()

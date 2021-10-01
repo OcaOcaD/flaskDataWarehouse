@@ -25,8 +25,8 @@ def getListadoPersonas(conexion):
 def saveEmployeeAndIsMedic(conexion,name,lastname,birthdate, sex,isMedic,cedula,email,password,confirmPassword):
     exito = False
     cursor = conexion.cursor()
-    sql = "INSERT INTO empleados VALUES (null, %s,%s,%s,%s,%s,%s,%s,%s)"
-    listado = (name, lastname, sex, isMedic,cedula,email,password,confirmPassword)
+    sql = "INSERT INTO empleados VALUES (null, %s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    listado = (name, lastname,birthdate, sex, isMedic,cedula,email,password,confirmPassword)
     cursor.execute(sql, listado)
     num_empleado = cursor.lastrowid
     if num_empleado >0:
@@ -36,11 +36,12 @@ def saveEmployeeAndIsMedic(conexion,name,lastname,birthdate, sex,isMedic,cedula,
     conexion.close()
     return exito
 
-def saveEmployee(conexion,name,lastname,sex,isMedic,email,password,confirmPassword):
+def saveEmployee(conexion,name,lastname,birthday,sex,isMedic,email,password,confirmPassword):
+    print(name,lastname,birthday,sex,isMedic,email,password,confirmPassword)
     exito = False
     cursor = conexion.cursor()
-    sql = "INSERT INTO empleados VALUES (null, %s,%s,%s,%s,%s,%s,%s)"
-    listado = (name, lastname, sex, isMedic,email,password,confirmPassword)
+    sql = "INSERT INTO empleados (nombre,apellidos,fecha_nac,genero,es_medico,IdCard, password, confirmPassword ) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s)"
+    listado = (name, lastname,birthday, sex, isMedic,email,password,confirmPassword)
     cursor.execute(sql, listado)
     num_empleado = cursor.lastrowid
     if num_empleado >0:
